@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 export const BackLink = styled(Link)`
   position: fixed;
-  // top: -48px;
   z-index: 1;
   display: flex;
   align-items: center;

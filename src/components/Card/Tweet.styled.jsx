@@ -72,7 +72,6 @@ export const Circle = styled.img`
 `;
 
 export const Avatar = styled.img`
-  // position: absolute;
   width: 62px;
   height: 62px;
   object-fit: cover;
