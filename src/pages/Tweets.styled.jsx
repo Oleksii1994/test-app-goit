@@ -1,7 +1,10 @@
-import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const BackLink = styled(Link)`
+  position: fixed;
+  // top: -48px;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -19,6 +22,18 @@ export const BackLink = styled(Link)`
   border-radius: 4px;
 
   &:hover {
-    color: #e893d1;
+    color: #ffc318;
   }
+`;
+
+export const TweetsGallery = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const TweetsContainer = styled.div`
+  position: relative;
+  padding: 0 86px;
 `;

@@ -1,7 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import { useRef } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
-import { BackLink } from './Tweets.styled';
+import { Tweet } from 'components/Card/Tweet';
+import { BackLink, TweetsContainer, TweetsGallery } from './Tweets.styled';
 
 export const Tweets = () => {
   const location = useLocation();
@@ -9,12 +10,14 @@ export const Tweets = () => {
   const pathToBack = useRef(location.state?.from ?? '/');
 
   return (
-    <div>
+    <TweetsContainer>
       <BackLink to={pathToBack.current}>
         <FaChevronLeft />
         Back
       </BackLink>
-      Cards
-    </div>
+      <TweetsGallery>
+        <Tweet></Tweet>
+      </TweetsGallery>
+    </TweetsContainer>
   );
 };
