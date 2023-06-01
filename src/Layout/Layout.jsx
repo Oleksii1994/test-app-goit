@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom";
-import { Suspense } from "react";
-import { ThreeDots } from "react-loader-spinner";
+import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
 
-import { Header, Nav, StyledLink, LoaderContainer } from "./Layout.styled";
+import { Header, Nav, StyledLink, LoaderContainer } from './Layout.styled';
 
-export const Layout = () => {
+const Layout = () => {
   return (
     <div>
       <Header>
@@ -34,3 +34,5 @@ export const Layout = () => {
     </div>
   );
 };
+
+export default Layout;

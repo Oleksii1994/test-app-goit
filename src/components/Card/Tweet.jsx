@@ -8,14 +8,16 @@ import {
   Circle,
   Avatar,
   DataList,
+  DataItem,
+  Name,
   Button,
 } from './Tweet.styled';
 import logo from '../../images/logo.svg';
 import picture from '../../images/picturebgr.png';
-import avatar from '../../images/hansel.png';
+// import avatar from '../../images/hansel.png';
 import circle from '../../images/ellipse.png';
 
-export const Tweet = () => {
+export const Tweet = ({ name, tweets, followers, avatar }) => {
   return (
     <TweetBox>
       <ContentBox>
@@ -29,12 +31,15 @@ export const Tweet = () => {
           <Avatar src={avatar} alt="avatar" />
         </AvatarBox>
         <DataList>
-          <li>
-            <p>Tweets</p>
-          </li>
-          <li>
-            <p>Followers</p>
-          </li>
+          <DataItem>
+            <Name>{name}</Name>
+          </DataItem>
+          <DataItem>
+            <p>{tweets}Tweets</p>
+          </DataItem>
+          <DataItem>
+            <p>{followers}Followers</p>
+          </DataItem>
         </DataList>
         <Button type="button">Follow</Button>
       </ContentBox>

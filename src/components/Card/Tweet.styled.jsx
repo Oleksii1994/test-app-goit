@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 export const TweetBox = styled.li`
   position: relative;
   width: 380px;
-  height: 460px;
+  height: 464px;
+  margin-bottom: 36px;
 
   background: linear-gradient(
     114.99deg,
@@ -23,11 +24,11 @@ export const TweetBox = styled.li`
 export const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 36px 28px;
+  padding: 28px;
 `;
 
 export const ImageBox = styled.div`
-  margin-bottom: 88px;
+  margin-bottom: 76px;
 `;
 
 export const Logo = styled.img`
@@ -44,7 +45,7 @@ export const Line = styled.div`
   left: 0px;
   top: 226px;
 
-  overflow: visible;
+  overflow: hidden;
 
   background: #ebd8ff;
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06),
@@ -75,6 +76,7 @@ export const Avatar = styled.img`
   width: 62px;
   height: 62px;
   object-fit: cover;
+  border-radius: 50%;
 `;
 
 export const DataList = styled.ul`
@@ -104,4 +106,14 @@ export const Button = styled.button`
   &:hover {
     box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
   }
+`;
+
+export const DataItem = styled.li`
+  &:not(:last-of-type) {
+    margin-bottom: 8px;
+  }
+`;
+
+export const Name = styled.p`
+  color: #ffc318;
 `;

@@ -1,8 +1,12 @@
-import { Route, Routes } from "react-router-dom";
-// import { lazy } from "react";
-import { Home } from "./pages/Home";
-import { Tweets } from "./pages/Tweets";
-import { Layout } from "./Layout/Layout";
+import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
+// import { Home } from './pages/Home';
+// import { Tweets } from './pages/Tweets';
+// import { Layout } from './Layout/Layout';
+
+const Layout = lazy(() => import('./Layout/Layout'));
+const Home = lazy(() => import('./pages/Home'));
+const Tweets = lazy(() => import('./pages/Tweets'));
 
 function App() {
   return (

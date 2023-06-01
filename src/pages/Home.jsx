@@ -1,7 +1,7 @@
-import bgrimage from "../images/picturebgr.png";
-import { HeroTitle, HomeContainer, HeroImage } from "./Home.styled";
+import bgrimage from '../images/picturebgr.png';
+import { HeroTitle, HomeContainer, HeroImage } from './Home.styled';
 
-export const Home = () => {
+const Home = () => {
   return (
     <HomeContainer>
       <HeroTitle>Your tweets here!</HeroTitle>
@@ -9,3 +9,5 @@ export const Home = () => {
     </HomeContainer>
   );
 };
+
+export default Home;
