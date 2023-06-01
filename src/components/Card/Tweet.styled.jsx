@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const TweetBox = styled.li`
   position: relative;
   width: 380px;
+  min-width: 380px;
   height: 464px;
   margin-bottom: 36px;
 
@@ -94,7 +95,7 @@ export const Button = styled.button`
   margin: 0 auto;
   background: #ebd8ff;
   border: none;
-  border-radius: 10.3108px;
+  border-radius: 10px;
   cursor: pointer;
 
   font-weight: 600;

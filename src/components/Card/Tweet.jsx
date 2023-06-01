@@ -35,10 +35,10 @@ export const Tweet = ({ name, tweets, followers, avatar }) => {
             <Name>{name}</Name>
           </DataItem>
           <DataItem>
-            <p>{tweets}Tweets</p>
+            <p>{tweets} Tweets</p>
           </DataItem>
           <DataItem>
-            <p>{followers}Followers</p>
+            <p>{followers} Followers</p>
           </DataItem>
         </DataList>
         <Button type="button">Follow</Button>
