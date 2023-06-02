@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   TweetBox,
   ContentBox,
@@ -11,6 +12,7 @@ import {
   DataItem,
   Name,
   Button,
+  ButtonFollowing,
 } from './Tweet.styled';
 import logo from '../../images/logo.svg';
 import picture from '../../images/picturebgr.png';
@@ -18,6 +20,14 @@ import picture from '../../images/picturebgr.png';
 import circle from '../../images/ellipse.png';
 
 export const Tweet = ({ name, tweets, followers, avatar }) => {
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  const handleFollowBtn = () => {
+    setIsFollowing(!isFollowing);
+  };
+
+  useEffect(() => {}, [isFollowing]);
+
   return (
     <TweetBox>
       <ContentBox>
@@ -38,10 +48,16 @@ export const Tweet = ({ name, tweets, followers, avatar }) => {
             <p>{tweets} Tweets</p>
           </DataItem>
           <DataItem>
-            <p>{followers} Followers</p>
+            <p>{isFollowing ? followers + 1 : followers} Followers</p>
           </DataItem>
         </DataList>
-        <Button type="button">Follow</Button>
+        {isFollowing ? (
+          <ButtonFollowing onClick={handleFollowBtn}>Following</ButtonFollowing>
+        ) : (
+          <Button type="button" onClick={handleFollowBtn}>
+            Follow
+          </Button>
+        )}
       </ContentBox>
     </TweetBox>
   );

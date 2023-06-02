@@ -38,7 +38,7 @@ const Tweets = () => {
           })
         );
         if (!filteredData.length) {
-          Notify.error("Oops, something went wrong. There's no tweets");
+          Notify.error("Oops, There's no tweets");
           return;
         }
 
