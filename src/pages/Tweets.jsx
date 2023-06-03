@@ -37,6 +37,7 @@ const Tweets = () => {
             avatar,
           })
         );
+
         if (!filteredData.length) {
           Notify.error("Oops, There's no tweets");
           return;
@@ -78,6 +79,7 @@ const Tweets = () => {
             followers={followers}
             tweets={tweets}
             avatar={avatar}
+            userId={id}
           ></Tweet>
         ))}
       </TweetsGallery>

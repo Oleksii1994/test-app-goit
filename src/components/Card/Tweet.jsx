@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   TweetBox,
   ContentBox,
@@ -16,17 +16,30 @@ import {
 } from './Tweet.styled';
 import logo from '../../images/logo.svg';
 import picture from '../../images/picturebgr.png';
-// import avatar from '../../images/hansel.png';
 import circle from '../../images/ellipse.png';
 
-export const Tweet = ({ name, tweets, followers, avatar }) => {
-  const [isFollowing, setIsFollowing] = useState(false);
+export const Tweet = ({ name, tweets, followers, avatar, userId }) => {
+  const user = JSON.parse(localStorage.getItem(`user${userId}`)) ?? false;
+  const userFollowing = user.following;
+  const [isFollowing, setIsFollowing] = useState(userFollowing);
 
-  const handleFollowBtn = () => {
-    setIsFollowing(!isFollowing);
+  const handleBtn = userId => {
+    const userObj = { userId, following: !isFollowing };
+    localStorage.setItem(`user${userId}`, JSON.stringify(userObj));
+    const userData = JSON.parse(localStorage.getItem(`user${userId}`));
+    setIsFollowing(userData.following);
   };
 
-  useEffect(() => {}, [isFollowing]);
+  const transformFollowersNumber = number => {
+    const string = number.toString().split('');
+    if (string.length > 6) {
+      string.splice(-6, 0, ',');
+    }
+    string.splice(-3, 0, ',');
+
+    string.join('');
+    return string;
+  };
 
   return (
     <TweetBox>
@@ -48,13 +61,20 @@ export const Tweet = ({ name, tweets, followers, avatar }) => {
             <p>{tweets} Tweets</p>
           </DataItem>
           <DataItem>
-            <p>{isFollowing ? followers + 1 : followers} Followers</p>
+            <p>
+              {isFollowing
+                ? transformFollowersNumber(followers + 1)
+                : transformFollowersNumber(followers)}{' '}
+              Followers
+            </p>
           </DataItem>
         </DataList>
         {isFollowing ? (
-          <ButtonFollowing onClick={handleFollowBtn}>Following</ButtonFollowing>
+          <ButtonFollowing onClick={() => handleBtn(userId)}>
+            Following
+          </ButtonFollowing>
         ) : (
-          <Button type="button" onClick={handleFollowBtn}>
+          <Button type="button" onClick={() => handleBtn(userId)}>
             Follow
           </Button>
         )}
