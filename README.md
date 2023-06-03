@@ -43,7 +43,7 @@ The project structure is as follows:
 
 - `src/components`: Contain component Tweet
 - `src/pages`: Contain components for pages and routing configuration
-- `src/layout`: Contains header with navigation elements
+- `src/Layout`: Contains header with navigation elements
 - `src/App.js`: All the Routes
 
 ## Getting Started
@@ -57,8 +57,8 @@ The project structure is as follows:
 
 - [React](https://legacy.reactjs.org/docs/react-dom.html)
 - [React Router](https://github.com/remix-run/react-router/tree/dev/examples)
-- [Axios] (https://axios-http.com/ru/docs/intro)
-- [Notiflix] (https://notiflix.github.io/notify)
+- [Axios](https://axios-http.com/ru/docs/intro)
+- [Notiflix](https://notiflix.github.io/notify)
 
 ## Additional Guidelines
 
