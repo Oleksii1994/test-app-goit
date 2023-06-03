@@ -5,7 +5,6 @@ import { HeroTitle, HomeContainer, HeroImage } from './Home.styled';
 const Home = () => {
   useEffect(() => {
     localStorage.setItem('followingUsers', JSON.stringify([]));
-    // console.log(followingUsers);
   }, []);
 
   return (
