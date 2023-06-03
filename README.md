@@ -43,8 +43,8 @@ The project structure is as follows:
 
 - `src/components`: Contain component Tweet
 - `src/pages`: Contain components for pages and routing configuration
-- 'src/layout': Contains header with navigation elements
-- 'src/App.js': All the Routes
+- `src/layout`: Contains header with navigation elements
+- `src/App.js`: All the Routes
 
 ## Getting Started
 

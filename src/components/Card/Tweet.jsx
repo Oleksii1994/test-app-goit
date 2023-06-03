@@ -22,9 +22,6 @@ export const Tweet = ({ name, tweets, followers, avatar, userId }) => {
   const user = JSON.parse(localStorage.getItem(`user${userId}`)) ?? false;
   const userFollowing = user.following;
   const [isFollowing, setIsFollowing] = useState(userFollowing);
-  // const [followingUsers, setFollowingUsers] = useState(
-  //   JSON.parse(localStorage.getItem('followingUsers')) || []
-  // );
 
   const handleBtn = userId => {
     const userObj = { userId, following: !isFollowing };
