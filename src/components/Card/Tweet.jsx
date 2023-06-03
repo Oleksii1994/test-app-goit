@@ -22,12 +22,40 @@ export const Tweet = ({ name, tweets, followers, avatar, userId }) => {
   const user = JSON.parse(localStorage.getItem(`user${userId}`)) ?? false;
   const userFollowing = user.following;
   const [isFollowing, setIsFollowing] = useState(userFollowing);
+  // const [followingUsers, setFollowingUsers] = useState(
+  //   JSON.parse(localStorage.getItem('followingUsers')) || []
+  // );
 
   const handleBtn = userId => {
     const userObj = { userId, following: !isFollowing };
     localStorage.setItem(`user${userId}`, JSON.stringify(userObj));
+
     const userData = JSON.parse(localStorage.getItem(`user${userId}`));
+
     setIsFollowing(userData.following);
+
+    const localFollowingUsers = JSON.parse(
+      localStorage.getItem(`followingUsers`)
+    );
+
+    if (
+      isFollowing &&
+      JSON.parse(localStorage.getItem('followingUsers')).includes(userId)
+    ) {
+      const index = localFollowingUsers.indexOf(userId);
+      console.log(index);
+      localFollowingUsers.splice(index, 1);
+      const newArr = Array.from(new Set(localFollowingUsers));
+      console.log(newArr);
+      localStorage.setItem('followingUsers', JSON.stringify(newArr));
+    } else {
+      localFollowingUsers.push(userId);
+
+      localStorage.setItem(
+        'followingUsers',
+        JSON.stringify(localFollowingUsers)
+      );
+    }
   };
 
   const transformFollowersNumber = number => {

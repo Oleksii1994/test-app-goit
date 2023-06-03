@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useLocation } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Tweet } from 'components/Card/Tweet';
+import { Filter } from 'components/Card/select/Select';
 import {
   BackLink,
   TweetsContainer,
@@ -13,11 +15,18 @@ import { fetchUsers } from 'api/api';
 
 const Tweets = () => {
   const [users, setUsers] = useState([]);
+  const [updatedUsers, setUpdatedUsers] = useState([]);
   const [showButton, setShowButton] = useState(false);
   const [threeElementsToRender, setThreeElementsToRender] = useState(3);
+  const [filter, setFilter] = useState('all');
+
   const location = useLocation();
 
   const pathToBack = useRef(location.state?.from ?? '/');
+
+  useEffect(() => {
+    console.log(filter);
+  }, []);
 
   useEffect(() => {
     try {
@@ -28,15 +37,16 @@ const Tweets = () => {
           return;
         }
         const firstThreeElements = data.slice(0, threeElementsToRender);
-        const filteredData = firstThreeElements.map(
-          ({ id, user, tweets, followers, avatar }) => ({
-            id,
-            user,
-            tweets,
-            followers,
-            avatar,
-          })
-        );
+        const filteredData = dataNormalizer(firstThreeElements);
+        //   firstThreeElements.map(
+        //   ({ id, user, tweets, followers, avatar }) => ({
+        //     id,
+        //     user,
+        //     tweets,
+        //     followers,
+        //     avatar,
+        //   })
+        // );
 
         if (!filteredData.length) {
           Notify.error("Oops, There's no tweets");
@@ -57,8 +67,42 @@ const Tweets = () => {
       Notify.error('Oops, something went wrong.');
       console.log(e.message);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [threeElementsToRender]);
+
+  useEffect(() => {
+    if (filter === 'all') {
+      setUpdatedUsers(users);
+    } else if (filter === 'followings') {
+      const usersIdsFollowings = JSON.parse(
+        localStorage.getItem('followingUsers')
+      );
+      const filteredUsersArray = users.filter(user =>
+        usersIdsFollowings.includes(user.id)
+      );
+      setUpdatedUsers(filteredUsersArray);
+    } else if (filter === 'follow') {
+      const usersIdsFollow = JSON.parse(localStorage.getItem('followingUsers'));
+      const filteredFollowUsersArray = users.filter(
+        user => !usersIdsFollow.includes(user.id)
+      );
+      setUpdatedUsers(filteredFollowUsersArray);
+    }
+  }, [filter, users]);
+
+  const dataNormalizer = arr => {
+    return arr.map(({ id, user, tweets, followers, avatar }) => ({
+      id,
+      user,
+      tweets,
+      followers,
+      avatar,
+    }));
+  };
+
+  const onFilter = e => {
+    setFilter(e.value);
+    console.log(e.value);
+  };
 
   const counterForData = () => {
     setThreeElementsToRender(prevState => prevState + 3);
@@ -71,8 +115,9 @@ const Tweets = () => {
         <FaChevronLeft />
         Back
       </BackLink>
+      <Filter onChange={onFilter}></Filter>
       <TweetsGallery>
-        {users.map(({ id, user, tweets, followers, avatar }) => (
+        {updatedUsers.map(({ id, user, tweets, followers, avatar }) => (
           <Tweet
             key={id}
             name={user}
