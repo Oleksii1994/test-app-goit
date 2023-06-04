@@ -4,6 +4,9 @@ import { HeroTitle, HomeContainer, HeroImage } from './Home.styled';
 
 const Home = () => {
   useEffect(() => {
+    if (JSON.parse(localStorage.getItem('followingUsers'))) {
+      return;
+    }
     localStorage.setItem('followingUsers', JSON.stringify([]));
   }, []);
 
