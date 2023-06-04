@@ -27,10 +27,6 @@ const Tweets = () => {
   const pathToBack = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
-    console.log(filter);
-  }, []);
-
-  useEffect(() => {
     try {
       const getUsers = async () => {
         const { data } = await fetchUsers();
@@ -124,12 +120,10 @@ const Tweets = () => {
 
   const onFilter = e => {
     setFilter(e.value);
-    console.log(e.value);
   };
 
   const counterForData = () => {
     setThreeElementsToRender(prevState => prevState + 3);
-    console.log(threeElementsToRender);
   };
 
   return (
