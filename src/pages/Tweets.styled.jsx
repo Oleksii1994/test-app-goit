@@ -65,3 +65,9 @@ export const LoadMoreBtn = styled.button`
     color: #ffc318;
   }
 `;
+export const TitleIfNoFollowings = styled.h1`
+  width: 600px;
+  margin-left: auto;
+  margin-right: 60px;
+  color: #ebd8ff;
+`;

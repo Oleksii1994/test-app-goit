@@ -10,6 +10,7 @@ import {
   TweetsContainer,
   TweetsGallery,
   LoadMoreBtn,
+  TitleIfNoFollowings,
 } from './Tweets.styled';
 import { fetchUsers } from 'api/api';
 
@@ -35,6 +36,7 @@ const Tweets = () => {
           return;
         }
         setDataFromApi(data);
+        // setUpdatedUsers(data);
         const firstThreeElements = data.slice(0, threeElementsToRender);
         const filteredData = dataNormalizer(firstThreeElements);
 
@@ -66,10 +68,7 @@ const Tweets = () => {
       setShowText(false);
       setShowButton(true);
       setUpdatedUsers(users);
-      if (users.length >= 1) {
-        setShowText(false);
-        setShowButton(true);
-      }
+
       if (users.length < dataFromApi.length - 1) {
         setShowButton(true);
       } else {
@@ -163,17 +162,10 @@ const Tweets = () => {
         </LoadMoreBtn>
       )}
       {showText && (
-        <h1
-          style={{
-            width: 600,
-            marginLeft: 'auto',
-            marginRight: 60,
-            color: '#ebd8ff',
-          }}
-        >
+        <TitleIfNoFollowings>
           Oops, it seems you still follow nobody. Hurry up! So many interesting
           people around the world to follow.
-        </h1>
+        </TitleIfNoFollowings>
       )}
     </TweetsContainer>
   );
