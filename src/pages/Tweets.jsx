@@ -63,7 +63,18 @@ const Tweets = () => {
 
   useEffect(() => {
     if (filter === 'all') {
+      setShowText(false);
+      setShowButton(true);
       setUpdatedUsers(users);
+      if (users.length >= 1) {
+        setShowText(false);
+        setShowButton(true);
+      }
+      if (users.length < dataFromApi.length - 1) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
     } else if (filter === 'followings') {
       const usersIdsFollowings = JSON.parse(
         localStorage.getItem('followingUsers')
