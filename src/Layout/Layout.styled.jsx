@@ -1,10 +1,10 @@
-import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
+import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
   display: flex;
   align-items: center;
-  margin-bottom: 76px;
+  margin-bottom: 104px;
   padding: 12px 86px;
   background: linear-gradient(
     114.99deg,

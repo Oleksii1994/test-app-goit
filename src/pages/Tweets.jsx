@@ -19,6 +19,8 @@ const Tweets = () => {
   const [showButton, setShowButton] = useState(false);
   const [threeElementsToRender, setThreeElementsToRender] = useState(3);
   const [filter, setFilter] = useState('all');
+  const [showText, setShowText] = useState(false);
+  const [dataFromApi, setDataFromApi] = useState([]);
 
   const location = useLocation();
 
@@ -36,17 +38,9 @@ const Tweets = () => {
           Notify.error('Oops, something went wrong.');
           return;
         }
+        setDataFromApi(data);
         const firstThreeElements = data.slice(0, threeElementsToRender);
         const filteredData = dataNormalizer(firstThreeElements);
-        //   firstThreeElements.map(
-        //   ({ id, user, tweets, followers, avatar }) => ({
-        //     id,
-        //     user,
-        //     tweets,
-        //     followers,
-        //     avatar,
-        //   })
-        // );
 
         if (!filteredData.length) {
           Notify.error("Oops, There's no tweets");
@@ -57,6 +51,8 @@ const Tweets = () => {
 
         if (threeElementsToRender !== data.length) {
           setShowButton(true);
+        } else if (users.length === data.length) {
+          setShowButton(false);
         } else {
           setShowButton(false);
           Notify.info("Oops! there's no more tweets");
@@ -79,15 +75,42 @@ const Tweets = () => {
       const filteredUsersArray = users.filter(user =>
         usersIdsFollowings.includes(user.id)
       );
+
+      if (filteredUsersArray.length <= 3) {
+        setShowText(false);
+        setShowButton(false);
+      }
+      if (filteredUsersArray.length > 3) {
+        setShowText(false);
+        setShowButton(false);
+      }
+
+      if (filteredUsersArray.length === dataFromApi.length) {
+        setShowButton(false);
+      }
+
+      if (!filteredUsersArray.length) {
+        setShowText(true);
+      }
       setUpdatedUsers(filteredUsersArray);
     } else if (filter === 'follow') {
       const usersIdsFollow = JSON.parse(localStorage.getItem('followingUsers'));
       const filteredFollowUsersArray = users.filter(
         user => !usersIdsFollow.includes(user.id)
       );
+      if (filteredFollowUsersArray.length >= 3) {
+        setShowText(false);
+        setShowButton(true);
+      }
+      if (filteredFollowUsersArray.length < dataFromApi.length - 3) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+
       setUpdatedUsers(filteredFollowUsersArray);
     }
-  }, [filter, users]);
+  }, [filter, users, showButton]);
 
   const dataNormalizer = arr => {
     return arr.map(({ id, user, tweets, followers, avatar }) => ({
@@ -133,6 +156,19 @@ const Tweets = () => {
         <LoadMoreBtn type="button" onClick={counterForData}>
           Load more
         </LoadMoreBtn>
+      )}
+      {showText && (
+        <h1
+          style={{
+            width: 600,
+            marginLeft: 'auto',
+            marginRight: 60,
+            color: '#ebd8ff',
+          }}
+        >
+          Oops, it seems you still follow nobody. Hurry up! So many interesting
+          people around the world to follow.
+        </h1>
       )}
     </TweetsContainer>
   );

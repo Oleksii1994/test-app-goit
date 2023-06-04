@@ -15,6 +15,10 @@ export const Filter = ({ value, onChange }) => {
         color: '#471ca9',
         backgroundColor: '#ebd8ff',
         borderRadius: 25,
+        position: 'fixed',
+        zIndex: 2,
+        top: 136,
+        left: 214,
       }}
     >
       <Select

@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 
 export const BackLink = styled(Link)`
   position: fixed;
-  top: 126px;
+  top: 136px;
   z-index: 1;
   display: flex;
   align-items: center;
   gap: 16px;
 
   width: 80px;
+  height: 25px;
 
   background: linear-gradient(
     114.99deg,
@@ -28,8 +29,11 @@ export const BackLink = styled(Link)`
 
 export const TweetsGallery = styled.ul`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  // flex-direction: column;
+  flex-wrap: wrap;
+  gap: 40px;
+
+  justify-content: space-evenly;
   align-items: center;
 `;
 
